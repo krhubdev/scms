@@ -40,11 +40,16 @@ route::post('/delete', function(Request $request){
 
 route::post('/update', function(Request $request){
     $id = $request->input('id');
+    date_default_timezone_set('Asia/Manila');
     $data = AssignedModel::where('student_id', $id)->update(['assign_type' => $request->input('type')]);
     return response()->json($data);
 });
 
 route::post('/save', function (Request $request) {
+
+    
+    date_default_timezone_set('Asia/Manila');
+    
     $rules = [
         'id' => 'required|integer',
         'name' => 'required|string|max:255',

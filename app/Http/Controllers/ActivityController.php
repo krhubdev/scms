@@ -19,6 +19,7 @@ class ActivityController extends Controller
         $events = EventModel::select('t_events.id as eid', 't_events.*', 't_courses.*')
             ->join('t_courses', 't_courses.id', 't_events.event_course')
             ->where('event_course', $id)
+            ->orWhere('event_course', 255)
             ->get();
 
         return view('activities.index')->with([

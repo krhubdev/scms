@@ -39,7 +39,7 @@
                                 <button type="button" class="btn btn-primary" style="float: right" data-bs-toggle="modal"
                                     data-bs-target="#modalDefault">
                                     <em class="icon ni ni-plus-circle"></em>
-                                    &nbsp; New Event
+                                    &nbsp; Assign
                                 </button>
                                 <table class="datatable-init-export nowrap table table-hover" data-export-title="Export">
                                     <thead>

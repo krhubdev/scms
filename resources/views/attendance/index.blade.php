@@ -99,21 +99,24 @@
                                     </div>
                                 </div>
                                 <hr>
-                                <div class="row">
+                                <div class="row g">
                                     <div class="col-md-9">
                                         <table class="table table-bordered">
-                                            <tr>
-                                                <td width="180" class="text-end mobile-view">Student ID # :</td>
-                                                <td><b class="text-dark" id="student_id">-</b></td>
-                                            </tr>
-                                            <tr>
-                                                <td width="180" class="text-end mobile-view">Student Name :</td>
-                                                <td><b class="text-dark" id="student_name">-</b></td>
-                                            </tr>
-                                            <tr>
-                                                <td width="180" class="text-end mobile-view">Course & Year Level :</td>
-                                                <td><b class="text-dark" id="student_course_yr">-</b></td>
-                                            </tr>
+                                            <tbody>
+                                                <tr>
+                                                    <td width="180" class="text-end ">Student ID # :</td>
+                                                    <td><b class="text-dark" id="student_id">-</b></td>
+                                                </tr>
+                                                <tr>
+                                                    <td width="180" class="text-end ">Student Name :</td>
+                                                    <td><b class="text-dark" id="student_name">-</b></td>
+                                                </tr>
+                                                <tr>
+                                                    <td width="180" class="text-end ">Course & Year Level :
+                                                    </td>
+                                                    <td><b class="text-dark" id="student_course_yr">-</b></td>
+                                                </tr>
+                                            </tbody>
                                         </table>
                                     </div>
                                     <div class="col-md-3">
@@ -197,7 +200,14 @@
         </div>
 
         @include('attendance.modal')
-
+        @php
+            $user_type = session('student_assign');
+            if (Auth::check()) {
+                $dsas = true;
+            } else {
+                $dsas = false;
+            }
+        @endphp
     </div>
 
     <script>
@@ -244,9 +254,16 @@
                     '<center><button class="btn btn-xs btn-success" onclick="save()"><em class="icon ni ni-check"></em></button>&nbsp;&nbsp;<button class="btn btn-xs btn-danger"><em class="icon ni ni-cross"></em></button> </center>'
 
             } else {
-                document.getElementById('student_course_yr').innerHTML =
-                    '<i class="text-danger fw-normal">This student is belong to the<i class="fw-bolder"> `' + response[
-                    'course'] + '` </i> Department. Please try another. Thank you.</i>'
+                @if ($dsas || $user_type == 'Suprime Student Counsel')
+                    document.getElementById('student_course_yr').innerHTML = response['course'] + ' (' +
+                        response['year_level'] + ')';
+                    document.getElementById('confirmation').innerHTML =
+                        '<center><button class="btn btn-xs btn-success" onclick="save()"><em class="icon ni ni-check"></em></button>&nbsp;&nbsp;<button class="btn btn-xs btn-danger"><em class="icon ni ni-cross"></em></button> </center>'
+                @else
+                    document.getElementById('student_course_yr').innerHTML =
+                        '<i class="text-danger fw-normal">This student is belong to the<i class="fw-bolder"> `' + response[
+                        'course'] + '` </i> Department. Please try another. Thank you.</i>'
+                @endif
             }
 
         }

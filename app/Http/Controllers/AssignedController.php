@@ -25,6 +25,7 @@ class AssignedController extends Controller
 
     public function store(Request $request)
     {
+        date_default_timezone_set('Asia/Manila');
 
         $request->validate(rules: [
             'inp_sid' => 'required|integer',

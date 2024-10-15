@@ -79,6 +79,12 @@
                     </li>
                     @if ($dsas || $user_type == 'Suprime Student Counsel')
                         <li class="nk-menu-item">
+                            <a href="/feedback" class="nk-menu-link">
+                                <span class="nk-menu-icon"><em class="icon ni ni-comments"></em></span>
+                                <span class="nk-menu-text">Student Feedbacks</span>
+                            </a>
+                        </li>
+                        <li class="nk-menu-item">
                             <a href="/auth/assign/new" class="nk-menu-link">
                                 <span class="nk-menu-icon"><em class="icon ni ni-users"></em></span>
                                 <span class="nk-menu-text">Account Management</span>
@@ -94,7 +100,8 @@
 
                     @if ($dsas)
                         <li class="nk-menu-item">
-                            <a href="#" data-bs-toggle="modal" data-bs-target="#modalDefault" class="nk-menu-link">
+                            <a href="#" data-bs-toggle="modal" data-bs-target="#modalDefault"
+                                class="nk-menu-link">
                                 <span class="nk-menu-icon"><em class="icon ni ni-setting"></em></span>
                                 <span class="nk-menu-text">Change Password</span>
                             </a>
